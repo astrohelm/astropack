@@ -2,7 +2,7 @@
   "license": "MIT",
   "version": "0.1.0",
   "type": "commonjs",
-  "name": "astrokit",
+  "name": "astro-kit",
   "homepage": "https://astrohelm.ru",
   "description": "Astrohelm Universal Scripts Kit",
   "author": "Alexander Ivanov <sashapop101@gmail.com>",
