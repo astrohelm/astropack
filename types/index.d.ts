@@ -1,8 +1,8 @@
 type TDate = Date | String | Number;
 
 export const time: {
-  compare: (fn: (a: number, b: number) => boolean) => (a: TDate, b: TDate) => boolean;
   compare: {
+    (fn: (a: number, b: number) => boolean): (a: TDate, b: TDate) => boolean;
     bigger: (a: TDate, b: TDate) => boolean;
     under: (a: TDate, b: TDate) => boolean;
     equal: (a: TDate, b: TDate) => boolean;
