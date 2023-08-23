@@ -3,7 +3,7 @@
 <h2 align="center">Installation 🚀</h2>
 
 ```npm
-npm i leadastropack --save
+npm i astropack --save
 ```
 
 <h2 align="center">Usage</h2>
