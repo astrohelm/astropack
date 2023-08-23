@@ -2,7 +2,7 @@
 
 ## [Unreleased][unreleased]
 
-## [0.0.1][] - xxxx-xx-xx
+## [0.0.1][] - 2023-08-23
 
 - Stable release version
 - Repository created
