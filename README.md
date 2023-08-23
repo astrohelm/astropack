@@ -1,9 +1,9 @@
-<h1 align="center">Astrokit - utilities kit</h1>
+<h1 align="center">astropack - utilities kit</h1>
 
 <h2 align="center">Installation 🚀</h2>
 
 ```npm
-npm i leadastrokit --save
+npm i leadastropack --save
 ```
 
 <h2 align="center">Usage</h2>
@@ -12,7 +12,7 @@ npm i leadastrokit --save
   <code>time</code>.
 
 ```javascript
-const { time } = require('astrokit');
+const { time } = require('astropack');
 console.log(time.prettify('h:m:s / D.M|Y')); // 18:50:54 / 07.05|2023
 ```
 
@@ -22,9 +22,9 @@ console.log(time.prettify('h:m:s / D.M|Y')); // 18:50:54 / 07.05|2023
 
 <details open>
 
-  <summary width="100%">Time utilities | <code>astrokit.time</code></summary><br/>
+  <summary width="100%">Time utilities | <code>astropack.time</code></summary><br/>
 
-- <code>astrokit.time.prettify</code> Return date in any string format
+- <code>astropack.time.prettify</code> Return date in any string format
 
 ```ts
 prettify(format: string, date?: Date | string | number) => string;
@@ -33,15 +33,15 @@ prettify(format: string, date?: Date | string | number) => string;
 ```
 
 ```javascript
-const astrokit = require('astro-kit');
-astrokit.time.prettify('h:m:s / D.M|Y', new Date()); // 18:50:54 / 07.05|2023
-astrokit.time.prettify('h-m-s.i', new Date()); // 18-50-54.045
+const astropack = require('astro-kit');
+astropack.time.prettify('h:m:s / D.M|Y', new Date()); // 18:50:54 / 07.05|2023
+astropack.time.prettify('h-m-s.i', new Date()); // 18-50-54.045
 ```
 
-- <code>astrokit.time.duration</code> Return duration in millisecond's from string
+- <code>astropack.time.duration</code> Return duration in millisecond's from string
 
 ```ts
-const astrokit = require('astro-kit');
+const astropack = require('astro-kit');
 function duration(time: string): number;
 // time is any combination of letters [dhms] with values
 // d - Day; h - Hours; m - Minute; s - Second;
@@ -49,51 +49,51 @@ function duration(time: string): number;
 ```
 
 ```javascript
-const astrokit = require('astro-kit');
-astrokit.time.duration('5s'); // 5000
-astrokit.time.duration('24h'); // 86400000
-astrokit.time.duration('1d'); // 86400000
-astrokit.time.duration('1d 1h 1m 5s'); // 90065000
+const astropack = require('astro-kit');
+astropack.time.duration('5s'); // 5000
+astropack.time.duration('24h'); // 86400000
+astropack.time.duration('1d'); // 86400000
+astropack.time.duration('1d 1h 1m 5s'); // 90065000
 ```
 
-- <code>astrokit.time.compare</code> Create any dates compare functions
+- <code>astropack.time.compare</code> Create any dates compare functions
 
 ```javascript
-const astrokit = require('astro-kit');
-astrokit.time.compare((a, b) => a > b)('2023-05-07', '2023-05-08'); // false
-astrokit.time.compare((a, b) => a > b)('2023-01-01', '2021-05-08'); // true
-astrokit.time.compare.bigger('2023-01-01', '2021-05-08'); // true
-astrokit.time.compare.under('2023-01-01', new Date()); // true
-astrokit.time.compare.equal('2023-01-01', '2021-05-08'); // false
+const astropack = require('astro-kit');
+astropack.time.compare((a, b) => a > b)('2023-05-07', '2023-05-08'); // false
+astropack.time.compare((a, b) => a > b)('2023-01-01', '2021-05-08'); // true
+astropack.time.compare.bigger('2023-01-01', '2021-05-08'); // true
+astropack.time.compare.under('2023-01-01', new Date()); // true
+astropack.time.compare.equal('2023-01-01', '2021-05-08'); // false
 ```
 
-- <code>astrokit.time.format</code>Make millisecond's in more readable format
+- <code>astropack.time.format</code>Make millisecond's in more readable format
 
 ```javascript
-const astrokit = require('astro-kit');
-astrokit.time.formatDuration(1000); // 1 s
-astrokit.time.formatDuration(60000); // 1 m
-astrokit.time.formatDuration(60001); // 1 m, 1 ms
-astrokit.time.formatDuration(90000); // 1 m, 30 s
+const astropack = require('astro-kit');
+astropack.time.formatDuration(1000); // 1 s
+astropack.time.formatDuration(60000); // 1 m
+astropack.time.formatDuration(60001); // 1 m, 1 ms
+astropack.time.formatDuration(90000); // 1 m, 30 s
 ```
 
-- <code>astrokit.time.measures</code> Get a divided millisecond's by all day time measurements
+- <code>astropack.time.measures</code> Get a divided millisecond's by all day time measurements
   object
 
 ```javascript
-const astrokit = require('astro-kit');
-astrokit.time.measures(new Date()); // { w: 2798, d: 19592, h: 470227, m: 28213672, s: 1692820378, i: 1692820378275 }
-astrokit.time.measures(90020); // { d: 0, h: 0, m: 1, s: 90, i: 90020 }
+const astropack = require('astro-kit');
+astropack.time.measures(new Date()); // { w: 2798, d: 19592, h: 470227, m: 28213672, s: 1692820378, i: 1692820378275 }
+astropack.time.measures(90020); // { d: 0, h: 0, m: 1, s: 90, i: 90020 }
 ```
 
-- <code>astrokit.time.diff</code> Return difference between two dates in any time measurement
+- <code>astropack.time.diff</code> Return difference between two dates in any time measurement
 
 ```javascript
-const astrokit = require('astro-kit');
+const astropack = require('astro-kit');
 let tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
-astrokit.time.diff(new Date(), tomorrow); // 1
-astrokit.time.diff(new Date(), tomorrow, 'h'); // 24
-astrokit.time.diff(tomorrow, new Date(), 'h'); // -24
+astropack.time.diff(new Date(), tomorrow); // 1
+astropack.time.diff(new Date(), tomorrow, 'h'); // 24
+astropack.time.diff(tomorrow, new Date(), 'h'); // -24
 ```
 
 </details>
@@ -101,7 +101,7 @@ astrokit.time.diff(tomorrow, new Date(), 'h'); // -24
 <h2 align="center">Copyright & contributors</h2>
 
 <p align="center">
-Copyright © 2023 <a href="https://github.com/astrohelm/astrokit/graphs/contributors">Astrohelm contributors</a>.
+Copyright © 2023 <a href="https://github.com/astrohelm/astropack/graphs/contributors">Astrohelm contributors</a>.
 Workspace is <a href="./LICENSE">MIT licensed</a>.<br/>
 Workspace is part of <a href="https://github.com/astrohelm">Astrohelm ecosystem</a>.
 </p>

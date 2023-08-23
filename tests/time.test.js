@@ -2,8 +2,8 @@
 
 const test = require('node:test');
 const assert = require('node:assert');
-const astrokit = require('..');
-const { time } = astrokit;
+const astropack = require('..');
+const { time } = astropack;
 const TODAY = new Date();
 const TOMORROW = new Date(new Date().setDate(TODAY.getDate() + 1));
 

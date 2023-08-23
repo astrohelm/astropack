@@ -2,7 +2,7 @@
   "license": "MIT",
   "version": "0.1.0",
   "type": "commonjs",
-  "name": "astro-kit",
+  "name": "astropack",
   "homepage": "https://astrohelm.ru",
   "description": "Astrohelm Universal Scripts Kit",
   "author": "Alexander Ivanov <sashapop101@gmail.com>",
@@ -31,9 +31,9 @@
     "eslint:fix": "eslint --fix \"**/*.{js,ts}\""
   },
 
-  "repository": { "type": "git", "url": "git+https://github.com/astrohelm/astrokit.git" },
+  "repository": { "type": "git", "url": "git+https://github.com/astrohelm/astropack.git" },
   "bugs": {
-    "url": "https://github.com/astrohelm/astrokit/issues",
+    "url": "https://github.com/astrohelm/astropack/issues",
     "email": "sashapop101@gmail.com"
   },
 
