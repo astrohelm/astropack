@@ -2,10 +2,21 @@
 
 ## [Unreleased][unreleased]
 
+## [0.1.0][] - 2023-08-24
+
+- Time submodule
+  - Date prettify
+  - Date difference
+  - Date measurements
+  - Date comparison
+  - Shorthand Duration
+  - Formatter
+
 ## [0.0.1][] - 2023-08-23
 
 - Stable release version
 - Repository created
 
-[unreleased]: https://github.com/astrohelm/astrokit/compare/v0.0.1...HEAD
-[0.0.1]: https://github.com/astrohelm/astrokit/releases/tag/v0.0.1
+[unreleased]: https://github.com/astrohelm/astropack/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/astrohelm/astropack/compare/v0.0.1...v0.1.0
+[0.0.1]: https://github.com/astrohelm/astropack/releases/tag/v0.0.1
