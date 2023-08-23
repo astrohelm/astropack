@@ -1,4 +1,4 @@
-<h1 align="center">astropack - utilities kit</h1>
+<h1 align="center">Astropack - utilities kit</h1>
 
 <h2 align="center">Installation 🚀</h2>
 
