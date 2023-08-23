@@ -17,5 +17,7 @@
 - Stable release version
 - Repository created
 
-[unreleased]: https://github.com/astrohelm/astropack/compare/release...HEAD
-[0.0.1]: https://github.com/astrohelm/astropack/releases/tag/release
+
+[unreleased]: https://github.com/astrohelm/astropack/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/astrohelm/astropack/compare/v0.0.1...v0.1.0
+[0.0.1]: https://github.com/astrohelm/astropack/releases/tag/v0.0.1
