@@ -7,5 +7,5 @@
 <p align="center">
 Copyright © 2023 <a href="https://github.com/astrohelm/workspace-example/graphs/contributors">Astrohelm contributors</a>.
 Workspace is <a href="./LICENSE">MIT licensed</a>.<br/>
-Workspace is part of <a href="https://github.com/astrohelm">astrohelm ecosystem</a>.
+Workspace is part of <a href="https://github.com/astrohelm">Astrohelm ecosystem</a>.
 </p>
