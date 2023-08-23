@@ -1,6 +1,6 @@
 {
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "commonjs",
   "name": "astrokit",
   "homepage": "https://astrohelm.ru",
@@ -25,23 +25,26 @@
   "files": ["/dist", "/lib", "/types"],
 
   "scripts": {
-    "test": "node --test && tsc",
+    "test": "node --test",
     "dev": "node index.js",
     "prettier:fix": "prettier --write \"**/*.{js,ts,json,html,cjs,md,yaml}\"",
     "eslint:fix": "eslint --fix \"**/*.{js,ts}\""
   },
 
   "repository": { "type": "git", "url": "git+https://github.com/astrohelm/astrokit.git" },
-  "bugs": { "url": "https://github.com/astrohelm/astrokit/issues", "email": "sashapop101@gmail.com" },
+  "bugs": {
+    "url": "https://github.com/astrohelm/astrokit/issues",
+    "email": "sashapop101@gmail.com"
+  },
 
   "devDependencies": {
-    "@types/node": "^18.15.10",
+    "@types/node": "^20.5.3",
     "eslint": "^8.40.0",
-    "eslint-config-astrohelm": "^1.0.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-astrohelm": "^1.1.1",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.8",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.2",
     "typescript": "^5.0.2"
   }
 }

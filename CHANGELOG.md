@@ -2,6 +2,16 @@
 
 ## [Unreleased][unreleased]
 
+## [0.1.0][] - 2023-08-24
+
+- Time submodule
+  - Date prettify
+  - Date difference
+  - Date measurements
+  - Date comparison
+  - Shorthand Duration
+  - Formatter
+
 ## [0.0.1][] - 2023-08-23
 
 - Stable release version
