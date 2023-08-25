@@ -24,7 +24,6 @@ test('Dates prettify', () => {
 
 test('Measures', () => {
   const { measures } = time;
-  console.log(measures(new Date()));
   assert.strictEqual(measures(1).i, 1);
   assert.strictEqual(measures(1_000).s, 1);
   assert.strictEqual(measures(100_000).m, 1);
