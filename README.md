@@ -34,6 +34,7 @@ prettify(format: string, date?: Date | string | number) => string;
 
 ```javascript
 const astropack = require('astropack');
+const astropack = require('astropack');
 astropack.time.prettify('h:m:s / D.M|Y', new Date()); // 18:50:54 / 07.05|2023
 astropack.time.prettify('h-m-s.i', new Date()); // 18-50-54.045
 ```
@@ -42,6 +43,7 @@ astropack.time.prettify('h-m-s.i', new Date()); // 18-50-54.045
 
 ```ts
 const astropack = require('astropack');
+const astropack = require('astropack');
 function duration(time: string): number;
 // time is any combination of letters [dhms] with values
 // d - Day; h - Hours; m - Minute; s - Second;
@@ -49,6 +51,7 @@ function duration(time: string): number;
 ```
 
 ```javascript
+const astropack = require('astropack');
 const astropack = require('astropack');
 astropack.time.duration('5s'); // 5000
 astropack.time.duration('24h'); // 86400000
@@ -59,6 +62,7 @@ astropack.time.duration('1d 1h 1m 5s'); // 90065000
 - <code>astropack.time.compare</code> Create any dates compare functions
 
 ```javascript
+const astropack = require('astropack');
 const astropack = require('astropack');
 astropack.time.compare((a, b) => a > b)('2023-05-07', '2023-05-08'); // false
 astropack.time.compare((a, b) => a > b)('2023-01-01', '2021-05-08'); // true
@@ -81,6 +85,7 @@ astropack.time.format(90000); // 1 m, 30 s
 
 ```javascript
 const astropack = require('astropack');
+const astropack = require('astropack');
 astropack.time.measures(new Date()); // { w: 2798, d: 19592, h: 470227, m: 28213672, s: 1692820378, i: 1692820378275 }
 astropack.time.measures(90020); // { d: 0, h: 0, m: 1, s: 90, i: 90020 }
 ```
@@ -88,6 +93,7 @@ astropack.time.measures(90020); // { d: 0, h: 0, m: 1, s: 90, i: 90020 }
 - <code>astropack.time.diff</code> Return difference between two dates in any time measurement
 
 ```javascript
+const astropack = require('astropack');
 const astropack = require('astropack');
 let tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
 astropack.time.diff(new Date(), tomorrow); // 1
@@ -101,6 +107,6 @@ astropack.time.diff(tomorrow, new Date(), 'h'); // -24
 
 <p align="center">
 Copyright © 2023 <a href="https://github.com/astrohelm/astropack/graphs/contributors">Astrohelm contributors</a>.
-Workspace is <a href="./LICENSE">MIT licensed</a>.<br/>
-Workspace is part of <a href="https://github.com/astrohelm">Astrohelm ecosystem</a>.
+Astropack is <a href="./LICENSE">MIT licensed</a>.<br/>
+Astropack is part of <a href="https://github.com/astrohelm">Astrohelm ecosystem</a>.
 </p>
