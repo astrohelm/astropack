@@ -1,4 +1,8 @@
 'use strict';
 
-const lib = require('./lib');
-module.exports = lib;
+module.exports = {
+  fs: require('./lib/fs'),
+  time: require('./lib/time'),
+  utils: require('./lib/utils'),
+  string: require('./lib/string'),
+};

@@ -103,6 +103,8 @@ astropack.time.diff(tomorrow, new Date(), 'h'); // -24
 
 </details>
 
+> Check types or libraries for more information about submodules.
+
 <h2 align="center">Copyright & contributors</h2>
 
 <p align="center">

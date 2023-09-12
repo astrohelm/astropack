@@ -2,6 +2,20 @@
 
 ## [Unreleased][unreleased]
 
+## [0.3.0][] - 2023-09-12
+
+- FS submodule
+  - ensure & check directory
+  - file ext & name & dir
+- String submodule
+  - cases
+  - template
+  - from & to string
+  - safe json parser
+- Utils submodule
+  - pretty bytes
+  - equality check
+
 ## [0.2.0][] - 2023-08-25
 
 - JSDoc comments
