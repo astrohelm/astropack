@@ -5,4 +5,5 @@ module.exports = {
   time: require('./lib/time'),
   utils: require('./lib/utils'),
   string: require('./lib/string'),
+  structs: require('./lib/structs'),
 };

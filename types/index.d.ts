@@ -1,6 +1,14 @@
 type TDate = Date | String | Number;
 type TMap = { [k: string]: unknown };
 
+interface Semaphore {
+  empty: boolean;
+  count: number;
+  leave: () => Promise<void>;
+  enter: () => Promise<void>;
+  constructor(concurency: number, size?: number, timeout?: number);
+}
+
 export const time: {
   /**
    * Compare any Dates
@@ -252,4 +260,8 @@ export const string: {
      */
     snakeToCamel: (s: string) => string;
   };
+};
+
+export const structs: {
+  Semaphore: Semaphore;
 };

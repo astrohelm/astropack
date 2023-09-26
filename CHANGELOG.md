@@ -2,6 +2,12 @@
 
 ## [Unreleased][unreleased]
 
+## [0.4.0][] - 2023-09-26
+
+- Structures submodule
+  - Parallel programming data structure
+    - Semaphore
+
 ## [0.3.0][] - 2023-09-12
 
 - FS submodule
