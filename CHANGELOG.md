@@ -2,6 +2,10 @@
 
 ## [Unreleased][unreleased]
 
+## [0.4.1][] - 2023-10-07
+
+- Types fixes
+
 ## [0.4.0][] - 2023-09-26
 
 - Structures submodule
