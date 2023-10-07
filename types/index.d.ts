@@ -73,7 +73,7 @@ export const time: {
    * astropack.time.diff(new Date(), tomorrow, 'h'); // 24
    * astropack.time.diff(tomorrow, new Date(), 'h'); // -24
    */
-  diff: (a: Date, b: Date, measure?: 'h' | 'm' | 's' | 'i') => number;
+  diff: (a: Date, b: Date, measure?: 'yaer' | 'month' | 'd' | 'h' | 'm' | 's' | 'i') => number;
   /**
    * Duration shorthands
    * use shorthands, such as 2h 30m to get milliseconds
@@ -122,14 +122,14 @@ export const fs: {
      * const astropack = require('astropack');
      * astropack.fs.dir.ensure('/path/to/dir').then(status => console.log(status));
      */
-    ensure: (path: string) => boolean;
+    ensure: (path: string) => Promise<boolean>;
     /**
      * Ensure that dir exists
      * @example
      * const astropack = require('astropack');
      * astropack.fs.dir.check('/path/to/dir').then(status => console.log(status));
      */
-    check: (path: string) => boolean;
+    check: (path: string) => Promise<boolean>;
   };
 };
 
