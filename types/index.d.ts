@@ -146,13 +146,25 @@ export const utils: {
    */
   equals: <T>(a: T, b: T) => boolean;
   /**
-   * Equality check
+   * Bytes prettiftcation
    * Can contain up to YB
    * @example
    * const astropack = require('astropack');
    * astropack.utils.prettyBytes(1100); // '1.1 KB'
    */
   prettyBytes: (bytes: number) => string;
+  /**
+   * @returns Type of function
+   * @example
+   * const astropack = require('astropack');
+   * astropack.utils.isFunction(() => {}); // 'arrow'
+   * astropack.utils.isFunction(function Test() {}); // 'function'
+   * astropack.utils.isFunction(class Test {}); // 'class'
+   * astropack.utils.isFunction(async function Test {}); // 'async'
+   * astropack.utils.isFunction(async test () => {}); // 'async'
+   * astropack.utils.isFunction(1); // null
+   */
+  isFunction: (sample: (...args) => unknown) => null | 'arrow' | 'async' | 'function' | 'class';
 };
 
 export const string: {

@@ -109,6 +109,6 @@ astropack.time.diff(tomorrow, new Date(), 'h'); // -24
 
 <p align="center">
 Copyright © 2023 <a href="https://github.com/astrohelm/astropack/graphs/contributors">Astrohelm contributors</a>.
-Astropack is <a href="./LICENSE">MIT licensed</a>.<br/>
-Astropack is part of <a href="https://github.com/astrohelm">Astrohelm ecosystem</a>.
+This library is <a href="./LICENSE">MIT licensed</a>.<br/>
+And it is part of <a href="https://github.com/astrohelm">Astrohelm ecosystem</a>.
 </p>

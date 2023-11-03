@@ -2,6 +2,14 @@
 
 ## [Unreleased][unreleased]
 
+## [0.4.2][] - 2023-11-04
+
+- isFunction utility, returns type of function:
+  - async
+  - function
+  - arrow
+  - class
+
 ## [0.4.1][] - 2023-10-07
 
 - Types fixes
