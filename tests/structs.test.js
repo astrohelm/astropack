@@ -70,3 +70,38 @@ test('Semaphore default', async () => {
   assert.strictEqual(semaphore.counter, CONCURRENCY);
   assert.strictEqual(semaphore.empty, true);
 });
+
+test('Pool', () => {
+  const factory = () => 'Empty value';
+  const pool = new structs.Pool(factory);
+  assert.strictEqual(pool.pop(), 'Empty value');
+  pool.put('My value');
+  assert.strictEqual(pool.pop(), 'My value');
+});
+
+test('Linked list', () => {
+  const list = new structs.LinkedList();
+  list.push('First node');
+  list.push('Second node');
+  list.push('Third node');
+  assert.strictEqual(list.indexOf('First node'), 0);
+  assert.strictEqual(list.indexOf('Third node'), 2);
+  assert.strictEqual(list.size, 3);
+  list.pop();
+  list.delete(0);
+  assert.strictEqual(list.indexOf('Second node'), 0);
+  list.shift();
+  list.push('First node');
+  list.push('Second node');
+  list.push('Third node');
+  assert.strictEqual(list.indexOf('First node'), 0);
+  assert.strictEqual(list.indexOf('Third node'), 2);
+  assert.strictEqual(list.size, 3);
+  list.deleteValue('First node');
+  assert.strictEqual(list.size, 2);
+  assert.strictEqual(list.indexOf('First node'), -1);
+  list.size = 10;
+  assert.strictEqual(list.size, 10);
+  assert.strictEqual(list[10], undefined);
+  assert.strictEqual(list.at(1), 'Third node');
+});

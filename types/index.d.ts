@@ -1,12 +1,32 @@
 type TDate = Date | String | Number;
 type TMap = { [k: string]: unknown };
 
-interface Semaphore {
+class Semaphore {
   empty: boolean;
   count: number;
   leave: () => Promise<void>;
   enter: () => Promise<void>;
   constructor(concurency: number, size?: number, timeout?: number);
+}
+
+class LinkedList<T = unknown> {
+  indexOf: (i: number) => number;
+  update: (i: number, v: T) => T;
+  at: (i: number) => T;
+  shift: () => T;
+  pop: () => T;
+  unshift: (...args: T[]) => number;
+  push: (...args: T[]) => number;
+  delete: (i: number) => T;
+  deleteValue: (i: T) => unknown;
+  size: number;
+  constructor() {}
+}
+
+class Pool<T = unknown> {
+  constructor(factory: () => T);
+  pop: () => T;
+  put: (v: T) => void;
 }
 
 export const time: {
@@ -165,6 +185,15 @@ export const utils: {
    * astropack.utils.isFunction(1); // null
    */
   isFunction: (sample: (...args) => unknown) => null | 'arrow' | 'async' | 'function' | 'class';
+  /**
+   * @returns Safe your sync function
+   * @example
+   * const astropack = require('astropack');
+   * const parse = astropack.utils.safe(JSON.parse());
+   * const [err, result] = parse('{'); // [Error, null]
+   * const [err, result] = parse('{}'); // [null, {}]
+   */
+  safe(fn: <T = unknown>(...args) => T);
 };
 
 export const string: {
@@ -274,6 +303,33 @@ export const string: {
   };
 };
 
+export const object: {
+  /**
+   * @example
+   * const astropack = require('astropack');
+   * const sample = { get: () => {}, set: () => {}, test: 123 };
+   * let temp = astropack.object.methods(sample); // ['get','set']
+   */
+  methods: Array<string>;
+  /**
+   * @example
+   * const astropack = require('astropack');
+   * const sample = { get: () => {}, set: () => {}, test: 123 };
+   * let temp = astropack.object.properties(sample); // ['test']
+   */
+  properties: Array<string>;
+  /**
+   * @example
+   * const astropack = require('astropack');
+   * const sample = { get: () => {}, set: () => {}, test: 123 };
+   * let temp = astropack.object.entries(sample);
+   * // [['get', Function], ['set', Function], ['test', 123]]
+   */
+  entries: Array<[string, unknown]>;
+};
+
 export const structs: {
+  Pool: Pool;
   Semaphore: Semaphore;
+  LinkedList: LinkedList;
 };
