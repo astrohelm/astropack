@@ -6,4 +6,5 @@ module.exports = {
   utils: require('./lib/utils'),
   string: require('./lib/string'),
   structs: require('./lib/structs'),
+  object: require('./lib/object'),
 };

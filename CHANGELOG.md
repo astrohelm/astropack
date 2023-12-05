@@ -2,6 +2,22 @@
 
 ## [Unreleased][unreleased]
 
+## [0.5.0][] - 2023-12-06
+
+- New Utility decorator <code>safe</code>
+- New Object utilities module
+- New structures:
+  - Linked list
+  - Pool
+
+## [0.4.2][] - 2023-11-04
+
+- isFunction utility, returns type of function:
+  - async
+  - function
+  - arrow
+  - class
+
 ## [0.4.1][] - 2023-10-07
 
 - Types fixes
@@ -50,7 +66,11 @@
 - Stable release version
 - Repository created
 
-[unreleased]: https://github.com/astrohelm/astropack/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/astrohelm/astropack/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/astrohelm/astropack/compare/v0.4.0...v0.5.0
+[0.4.1]: https://github.com/astrohelm/astropack/compare/v0.4.1...v0.4.2
+[0.4.1]: https://github.com/astrohelm/astropack/compare/v0.4.0...v0.4.1
+[0.4.0]: https://github.com/astrohelm/astropack/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/astrohelm/astropack/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/astrohelm/astropack/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/astrohelm/astropack/compare/v0.1.0...v0.1.1
