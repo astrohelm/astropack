@@ -10,7 +10,10 @@ class Semaphore {
 }
 
 class LinkedList<T = unknown> {
-  indexOf: (i: number) => number;
+  chain: (type: 'before' | 'after', list: LinkedList) => void;
+  unchain: (type: 'before' | 'after') => void;
+  indexOf: (v: T) => number;
+  includes: (v: T) => boolean;
   update: (i: number, v: T) => T;
   at: (i: number) => T;
   shift: () => T;
@@ -18,8 +21,12 @@ class LinkedList<T = unknown> {
   unshift: (...args: T[]) => number;
   push: (...args: T[]) => number;
   delete: (i: number) => T;
-  deleteValue: (i: T) => unknown;
-  size: number;
+  deleteValue: (i: T) => T;
+  forEach: (callback: (value: T, i: number, target: LinkedList) => void) => void;
+  map: (callback: (value: T, i: number, target: LinkedList) => void) => LinkedList;
+  reduce: <A>(callback: (value: T, i: number, target: LinkedList) => void, acc: A) => unknown;
+  filter: (callback: (value: T, i: number, target: LinkedList) => void) => LinkedList;
+  length: number;
   constructor() {}
 }
 
