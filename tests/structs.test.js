@@ -86,7 +86,7 @@ test('Linked list', () => {
   list.push('Third node');
   assert.strictEqual(list.indexOf('First node'), 0);
   assert.strictEqual(list.indexOf('Third node'), 2);
-  assert.strictEqual(list.size, 3);
+  assert.strictEqual(list.length, 3);
   list.pop();
   list.delete(0);
   assert.strictEqual(list.indexOf('Second node'), 0);
@@ -96,12 +96,27 @@ test('Linked list', () => {
   list.push('Third node');
   assert.strictEqual(list.indexOf('First node'), 0);
   assert.strictEqual(list.indexOf('Third node'), 2);
-  assert.strictEqual(list.size, 3);
+  assert.strictEqual(list.length, 3);
   list.deleteValue('First node');
-  assert.strictEqual(list.size, 2);
+  assert.strictEqual(list.length, 2);
   assert.strictEqual(list.indexOf('First node'), -1);
-  list.size = 10;
-  assert.strictEqual(list.size, 10);
+  list.length = 10;
+  assert.strictEqual(list.length, 10);
   assert.strictEqual(list[10], undefined);
   assert.strictEqual(list.at(1), 'Third node');
+  list[5] = 'Fith node';
+  assert.strictEqual(list.at(5), 'Fith node');
+  assert.strictEqual(list.reduce((acc, v) => (acc.push(v), acc), []).length, 10);
+  const result = list.reduce((acc, v) => (acc.push(v), acc), []);
+  assert.strictEqual(result[5], 'Fith node');
+  assert.strictEqual(list.filter(v => v).length, 3);
+});
+
+test('Linked list chaining', () => {
+  const a = new astropack.structs.LinkedList(1, 2, 3, 4);
+  const b = new astropack.structs.LinkedList(5, 6, 7, 8);
+  b.chain('before', a);
+  assert.strictEqual([...b].length, 8);
+  console.log(b.length, [...b], b[0], b.at(0));
+  assert.strictEqual(b.length, 4);
 });
