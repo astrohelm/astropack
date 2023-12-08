@@ -1,40 +1,57 @@
 type TDate = Date | String | Number;
 type TMap = { [k: string]: unknown };
 
-class Semaphore {
-  empty: boolean;
-  count: number;
-  leave: () => Promise<void>;
-  enter: () => Promise<void>;
-  constructor(concurency: number, size?: number, timeout?: number);
-}
+export const structs = {
+  Semaphore: class Semaphore {
+    static symbols: { kConcurrncy: symbol; kTimeout: symbol; kSize: symbol };
+    empty: boolean;
+    count: number;
+    leave: () => Promise<void>;
+    enter: () => Promise<void>;
+    constructor(concurency: number, size?: number, timeout?: number);
+  },
 
-class LinkedList<T = unknown> {
-  chain: (type: 'before' | 'after', list: LinkedList) => void;
-  unchain: (type: 'before' | 'after') => void;
-  indexOf: (v: T) => number;
-  includes: (v: T) => boolean;
-  update: (i: number, v: T) => T;
-  at: (i: number) => T;
-  shift: () => T;
-  pop: () => T;
-  unshift: (...args: T[]) => number;
-  push: (...args: T[]) => number;
-  delete: (i: number) => T;
-  deleteValue: (i: T) => T;
-  forEach: (callback: (value: T, i: number, target: LinkedList) => void) => void;
-  map: (callback: (value: T, i: number, target: LinkedList) => void) => LinkedList;
-  reduce: <A>(callback: (value: T, i: number, target: LinkedList) => void, acc: A) => unknown;
-  filter: (callback: (value: T, i: number, target: LinkedList) => void) => LinkedList;
-  length: number;
-  constructor() {}
-}
+  LinkedList: class LinkedList<T = unknown> {
+    constructor(...values: T[]);
+    chain: (type: 'before' | 'after', list: LinkedList) => void;
+    unchain: (type: 'before' | 'after') => void;
+    indexOf: (v: T) => number;
+    includes: (v: T) => boolean;
+    with: (i: number, v: T) => T;
+    at: (i: number) => T;
+    shift: () => T;
+    pop: () => T;
+    unshift: (...args: T[]) => number;
+    push: (...args: T[]) => number;
+    delete: (i: number) => T;
+    deleteValue: (v: T) => T;
+    fill: <T>(v: T) => LinkedList<T>;
+    every: (callback: (value: T, i: number, target: LinkedList) => boolean) => boolean;
+    find: (callback: (value: T, i: number, target: LinkedList) => boolean) => T;
+    some: (callback: (value: T, i: number, target: LinkedList) => boolean) => boolean;
+    forEach: (callback: (value: T, i: number, target: LinkedList) => void) => void;
+    map: (callback: (value: T, i: number, target: LinkedList) => unknown) => LinkedList;
+    reduce: <A>(callback: (value: T, i: number, target: LinkedList) => unknown, acc: A) => unknown;
+    filter: (callback: (value: T, i: number, target: LinkedList) => boolean) => LinkedList;
+    length: number;
+    static symbols: {
+      kHead: symbol;
+      kTail: symbol;
+      kLength: symbol;
+      kSelect: symbol;
+      kValueSelect: symbol;
+      kAdd: symbol;
+      kChain: symbol;
+    };
+  },
 
-class Pool<T = unknown> {
-  constructor(factory: () => T);
-  pop: () => T;
-  put: (v: T) => void;
-}
+  Pool: class Pool<T = unknown> {
+    static symbols: { kFactory: symbol; kStorage: symbol };
+    constructor(factory: () => T);
+    pop: () => T;
+    put: (v: T) => void;
+  },
+};
 
 export const time: {
   /**
@@ -333,10 +350,4 @@ export const object: {
    * // [['get', Function], ['set', Function], ['test', 123]]
    */
   entries: Array<[string, unknown]>;
-};
-
-export const structs: {
-  Pool: Pool;
-  Semaphore: Semaphore;
-  LinkedList: LinkedList;
 };
