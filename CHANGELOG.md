@@ -5,11 +5,11 @@
 ## [0.6.0][] - 2023-12-09
 
 - Add Symbolic properties
-- Perfomance improvements
+- Performance improvements
 - LinkedList contract updates
 - Fixed bugs with linked list
 - Test coverage improvements
-- Frontend version
+- Browser version
 
 ## [0.5.0][] - 2023-12-06
 
