@@ -8,3 +8,5 @@ module.exports = {
   structs: require('./lib/structs'),
   object: require('./lib/object'),
 };
+
+module.exports.default = module.exports;

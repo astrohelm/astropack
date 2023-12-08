@@ -1,6 +1,6 @@
 {
   "license": "MIT",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "type": "commonjs",
   "name": "astropack",
   "homepage": "https://astrohelm.ru",
@@ -20,24 +20,31 @@
   "types": "types/index.d.ts",
   "packageManager": "npm@9.6.4",
   "readmeFilename": "README.md",
-  "engines": { "node": "18 || 19 || 20" },
-  "browser": {},
+  "browser": { "./index.js": "./dist/index.js" },
   "files": ["/dist", "/lib", "/types"],
+  "engines": {
+    "node": "18 || 19 || 20"
+  },
 
   "scripts": {
     "test": "node --test",
     "dev": "node index.js",
     "prettier:fix": "prettier --write \"**/*.{js,ts,json,html,cjs,md,yaml}\"",
-    "eslint:fix": "eslint --fix \"**/*.{js,ts}\""
+    "eslint:fix": "eslint --fix \"**/*.{js,ts}\"",
+    "build": "rollup -c ./dist/rollup.config.js"
   },
 
-  "repository": { "type": "git", "url": "git+https://github.com/astrohelm/astropack.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/astrohelm/astropack.git"
+  },
   "bugs": {
     "url": "https://github.com/astrohelm/astropack/issues",
     "email": "sashapop101@gmail.com"
   },
 
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
     "@types/node": "^20.10.3",
     "eslint": "^8.55.0",
     "eslint-config-astrohelm": "^1.2.0",
@@ -45,6 +52,7 @@
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.1.0",
+    "rollup": "^4.7.0",
     "typescript": "^5.3.2"
   }
 }

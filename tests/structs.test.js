@@ -4,7 +4,6 @@ const test = require('node:test');
 const assert = require('node:assert');
 const astropack = require('..');
 const { structs } = astropack;
-
 const CONCURRENCY = 3;
 const QUEUE_SIZE = 4;
 const TIMEOUT = 1500;
@@ -80,9 +79,8 @@ test('Pool', () => {
 });
 
 test('Linked list', () => {
-  const list = new structs.LinkedList();
-  list.push('First node');
-  list.push('Second node');
+  const { LinkedList } = structs;
+  const list = new LinkedList('First node', 'Second node');
   list.push('Third node');
   assert.strictEqual(list.indexOf('First node'), 0);
   assert.strictEqual(list.indexOf('Third node'), 2);
