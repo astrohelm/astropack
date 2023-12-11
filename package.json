@@ -1,6 +1,6 @@
 {
   "license": "MIT",
-  "version": "0.6.0",
+  "version": "0.67.0",
   "type": "commonjs",
   "name": "astropack",
   "homepage": "https://astrohelm.ru",
@@ -45,7 +45,7 @@
 
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
-    "@types/node": "^20.10.3",
+    "@types/node": "^20.10.4",
     "eslint": "^8.55.0",
     "eslint-config-astrohelm": "^1.2.0",
     "eslint-config-prettier": "^9.1.0",
@@ -53,6 +53,6 @@
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.1.0",
     "rollup": "^4.7.0",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.3"
   }
 }

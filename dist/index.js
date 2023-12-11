@@ -28,11 +28,12 @@ const measures = ms => ({
   i: Math.floor(ms),
 });
 
-const monthFormula = a => a.getMonth() + 12 * a.getFullYear();
-const diff = (a, b, measure = 'd') => {
+// prettier-ignore
+const diff = (timeA, timeB = new Date(), measure = 'd') => {
+  var a = new Date(timeA), b = new Date(timeB);
   if (measure !== 'month' || measure !== 'year') return measures(a - b)[measure];
-  if (measure === 'month') return monthFormula(a) - monthFormula(b);
-  return a.getFullYear() - b.getFullYear();
+  if (measure === 'year') return a.getFullYear() - b.getFullYear();
+  return a.getMonth() + 12 * a.getFullYear() - b.getMonth() + 12 * b.getFullYear();
 };
 
 const duration = (time, formatted = time.split(' ')) =>
@@ -206,27 +207,20 @@ const kAdd = Symbol('add');
 const kChain = Symbol('chain');
 var linked = LinkedList;
 LinkedList.symbols = { kHead, kTail, kLength, kSelect, kValueSelect, kAdd, kChain };
+LinkedList.isList = sample => sample.constructor?.name === 'LinkedList';
+LinkedList.of = (...args) => new LinkedList(...args);
+LinkedList.from = args => new LinkedList(...args);
 
 function LinkedList(...values) {
+  if (!new.target) return new LinkedList(...values);
+  this[kChain] = { before: null, after: null };
   this[kHead] = null;
   this[kTail] = null;
   this[kLength] = 0;
-  this[kChain] = { before: null, after: null };
 
-  Object.defineProperty(this, 'length', {
-    enumerable: true,
-    get: () => this[kLength],
-    set: v => {
-      var k = this[kLength] < v ? 'push' : 'shift';
-      if (typeof v !== 'number') throw new Error('Linked List length must be a number');
-      while (this[kLength] - v) this[k](undefined);
-    },
-  });
-
-  if (values.length) this.push(...values);
+  values.length && this[kAdd](false, values);
   return new Proxy(this, {
     get: (target, prop, reciever) => {
-      if (prop === Symbol.iterator) return target[Symbol.iterator].bind(target);
       if (typeof prop === 'symbol' || isNaN(+prop)) return Reflect.get(target, prop, reciever);
       return this[kSelect](+prop)?.value;
     },
@@ -240,6 +234,18 @@ function LinkedList(...values) {
   });
 }
 
+Object.defineProperty(LinkedList.prototype, 'length', {
+  enumerable: true,
+  get() {
+    return this[kLength];
+  },
+  set(v) {
+    var k = this[kLength] < v ? 'push' : 'shift';
+    if (typeof v !== 'number') throw new Error('Linked List length must be a number');
+    while (this[kLength] - v) this[k](undefined);
+  },
+});
+
 LinkedList.prototype[Symbol.iterator] = function* () {
   const { before, after } = this[kChain];
   if (before) yield* before;
@@ -249,6 +255,11 @@ LinkedList.prototype[Symbol.iterator] = function* () {
     current = current.next;
   }
   if (after) yield* after;
+};
+
+LinkedList.prototype[Symbol.toPrimitive] = function (hint) {
+  if (hint === 'number') return this[kLength];
+  return JSON.stringify([...this]);
 };
 
 // prettier-ignore

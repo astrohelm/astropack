@@ -115,6 +115,78 @@ test('Linked list chaining', () => {
   const b = new astropack.structs.LinkedList(5, 6, 7, 8);
   b.chain('before', a);
   assert.strictEqual([...b].length, 8);
-  console.log(b.length, [...b], b[0], b.at(0));
   assert.strictEqual(b.length, 4);
+});
+
+test('EventEmitter', async () => {
+  const ee = new astropack.structs.EventEmitter();
+  assert.strictEqual(ee.getMaxListeners(), 10);
+  let [on, once] = [0, 0];
+
+  ee.on('name1', (a, b) => {
+    assert.strictEqual(a, 'hello');
+    assert.strictEqual(b, 'world');
+    on++;
+  });
+
+  ee.once('name1', data => {
+    assert.strictEqual(data, 'hello');
+    once++;
+  });
+
+  ee.emit('name1', 'hello', 'world');
+  ee.emit('name1', 'hello', 'world');
+
+  assert.strictEqual(on, 2);
+  assert.strictEqual(once, 1);
+
+  assert.strictEqual(ee.listenerCount('name1'), 1);
+  assert.strictEqual(ee.listenerCount('name2'), 0);
+
+  let count = 0;
+  const fn = () => void count++;
+  ee.on('name1', fn);
+  ee.emit('name1', 'hello', 'world');
+  assert.strictEqual(count, 1);
+
+  assert.strictEqual(ee.listenerCount('name1'), 2);
+  ee.off('name1', fn);
+  assert.strictEqual(ee.listenerCount('name1'), 1);
+
+  ee.emit('name1', 'hello', 'world');
+  assert.strictEqual(count, 1);
+
+  ee.clear('name1');
+  assert.strictEqual(ee.listenerCount('name1'), 0);
+
+  setTimeout(() => {
+    ee.emit('delayed', 'hello', 'world');
+  }, 50);
+
+  const EventEmitter = astropack.structs.EventEmitter;
+  const result = await EventEmitter.once(ee, 'delayed');
+  assert.strictEqual(result[0], 'hello');
+  assert.strictEqual(result[1], 'world');
+
+  ee.clear();
+  assert.strictEqual(ee.listenerCount('delayed'), 0);
+
+  const controller = new AbortController();
+  let counter = 0;
+  let timer = null;
+  const callback = () => {
+    if (counter === 3) clearInterval(timer), controller.abort();
+    counter++;
+    ee.emit('test', 'value', counter);
+  };
+  timer = setInterval(callback, 50);
+
+  try {
+    for await (var res of EventEmitter.on(ee, 'test', { signal: controller.signal })) {
+      assert.strictEqual(typeof res[0], 'string');
+      assert.strictEqual(typeof res[1], 'number');
+    }
+  } catch (e) {
+    assert.strictEqual(e.message, 'Aborted');
+  }
 });
