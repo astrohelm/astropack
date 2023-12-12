@@ -2,6 +2,15 @@
 
 ## [Unreleased][unreleased]
 
+## [0.7.0][] - 2023-12-13
+
+- Linked list static methods
+- Linked list contract improvements
+- Performance improvements
+- Network utilities
+- EventEmitter browser polyfill
+- Pool improvements
+
 ## [0.6.0][] - 2023-12-09
 
 - Add Symbolic properties
@@ -75,7 +84,8 @@
 - Stable release version
 - Repository created
 
-[unreleased]: https://github.com/astrohelm/astropack/compare/v0.6.0...HEAD
+[unreleased]: https://github.com/astrohelm/astropack/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/astrohelm/astropack/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/astrohelm/astropack/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/astrohelm/astropack/compare/v0.4.0...v0.5.0
 [0.4.2]: https://github.com/astrohelm/astropack/compare/v0.4.0...v0.5.0

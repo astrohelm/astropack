@@ -1,6 +1,8 @@
 type TDate = Date | String | Number;
 type TMap = { [k: string]: unknown };
 
+import type { on, once, EventEmitter as NodeEmitter, defaultMaxListeners } from 'node:events';
+
 export const structs = {
   Semaphore: class Semaphore {
     static symbols: { kConcurrncy: symbol; kTimeout: symbol; kSize: symbol };
@@ -12,6 +14,10 @@ export const structs = {
   },
 
   LinkedList: class LinkedList<T = unknown> {
+    length: number;
+    static of: <T>(...args: T[]) => LinkedList<T>;
+    static from: <T>(sample: Iterable<T>) => LinkedList<T>;
+    static isList: (sample: unknown) => boolean;
     constructor(...values: T[]);
     chain: (type: 'before' | 'after', list: LinkedList) => void;
     unchain: (type: 'before' | 'after') => void;
@@ -33,7 +39,6 @@ export const structs = {
     map: (callback: (value: T, i: number, target: LinkedList) => unknown) => LinkedList;
     reduce: <A>(callback: (value: T, i: number, target: LinkedList) => unknown, acc: A) => unknown;
     filter: (callback: (value: T, i: number, target: LinkedList) => boolean) => LinkedList;
-    length: number;
     static symbols: {
       kHead: symbol;
       kTail: symbol;
@@ -43,6 +48,13 @@ export const structs = {
       kAdd: symbol;
       kChain: symbol;
     };
+  },
+
+  EventEmitter: class EventEmitter extends NodeEmitter {
+    static on: on;
+    static defaultMaxListeners: defaultMaxListeners;
+    static symbols: { kEvents; kMaxListeners };
+    static once: once;
   },
 
   Pool: class Pool<T = unknown> {
@@ -117,7 +129,7 @@ export const time: {
    * astropack.time.diff(new Date(), tomorrow, 'h'); // 24
    * astropack.time.diff(tomorrow, new Date(), 'h'); // -24
    */
-  diff: (a: Date, b: Date, measure?: 'yaer' | 'month' | 'd' | 'h' | 'm' | 's' | 'i') => number;
+  diff: (a: Date, b?: Date, measure?: 'yaer' | 'month' | 'd' | 'h' | 'm' | 's' | 'i') => number;
   /**
    * Duration shorthands
    * use shorthands, such as 2h 30m to get milliseconds

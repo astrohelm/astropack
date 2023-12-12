@@ -7,6 +7,7 @@ module.exports = {
   string: require('./lib/string'),
   structs: require('./lib/structs'),
   object: require('./lib/object'),
+  net: require('./lib/net'),
 };
 
 module.exports.default = module.exports;
