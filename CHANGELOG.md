@@ -2,12 +2,14 @@
 
 ## [Unreleased][unreleased]
 
-## [0.7.0][] - 2023-12-12
+## [0.7.0][] - 2023-12-13
 
 - Linked list static methods
 - Linked list contract improvements
 - Performance improvements
 - Network utilities
+- EventEmitter browser polyfill
+- Pool improvements
 
 ## [0.6.0][] - 2023-12-09
 

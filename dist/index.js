@@ -440,6 +440,104 @@ function Node(value) {
   this.prev = null;
 }
 
+/* eslint-disable no-unmodified-loop-condition */
+
+const DEFAULT_MAX_LISTENERS = 10;
+const kEvents = Symbol('events storage');
+const kMaxListeners = Symbol('max listeners count');
+EventEmitter.symbols = { kEvents, kMaxListeners };
+EventEmitter.on = on;
+EventEmitter.once = once;
+EventEmitter.defaultMaxListeners = DEFAULT_MAX_LISTENERS;
+var events = EventEmitter;
+
+function EventEmitter() {
+  if (!new.target) return new EventEmitter();
+  this[kMaxListeners] = DEFAULT_MAX_LISTENERS;
+  this[kEvents] = new Map();
+}
+
+EventEmitter.prototype.emit = function (name, ...args) {
+  const event = this[kEvents].get(name);
+  if (!event) return false;
+  event.forEach(listener => listener(...args));
+  return true;
+};
+
+// prettier-ignore
+EventEmitter.prototype.addListener = EventEmitter.prototype.on = function (name, listener) {
+  const { [kEvents]: storage, [kMaxListeners]: maxSize } = this;
+  var created = storage.get(name), event = created ?? new Set();
+  if (!created) storage.set(name, event);
+  if (event.size > maxSize) leakWarn(event.size, maxSize);
+  event.add(listener), this.emit('newListener', name, listener);
+  return this;
+};
+
+EventEmitter.prototype.once = function (name, listener) {
+  const disable = (...args) => void (this.off(name, disable), listener(...args));
+  return this.on(name, disable);
+};
+
+EventEmitter.prototype.removeListener = EventEmitter.prototype.off = function (name, listener) {
+  const event = this[kEvents].get(name);
+  if (event) event.delete(listener);
+  this.emit('removeListener', name, listener);
+  return this;
+};
+
+EventEmitter.prototype.removeAllListeners = EventEmitter.prototype.clear = function (name) {
+  name ? this[kEvents].delete(name) : this[kEvents].clear();
+  return this;
+};
+
+EventEmitter.prototype.listenerCount = function (name) {
+  return this[kEvents].get(name)?.size ?? 0;
+};
+
+EventEmitter.prototype.eventNames = function () {
+  return [...this[kEvents].keys()];
+};
+
+EventEmitter.prototype.listeners = function (name) {
+  const listeners = this[kEvents].get(name);
+  return listeners ? [...listeners] : [];
+};
+
+EventEmitter.prototype.getMaxListeners = function () {
+  return this[kMaxListeners];
+};
+
+EventEmitter.prototype.setMaxListeners = function (n) {
+  this[kMaxListeners] = n;
+  return this;
+};
+
+function once(emitter, name, { signal } = {}) {
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) reject(new Error('Aborted'));
+    emitter.once(name, (...args) => resolve(args));
+    signal?.addEventListener('abort', listener);
+    function listener() {
+      signal.removeEventListener('abort', listener);
+      reject(new Error('Aborted'));
+    }
+  });
+}
+
+async function* on(emitter, name, { signal } = {}) {
+  var notAborted = !signal?.aborted;
+  if (!notAborted) throw new Error('Aborted');
+  while (notAborted) yield await once(emitter, name, { signal });
+}
+
+// prettier-ignore
+function leakWarn(count, max) {
+  return `MaxListenersExceededWarning: Possible EventEmitter memory leak detected.
+        ${count} listeners added. Use emitter.setMaxListeners() to increase limit.
+        Current maxListenersCount: ${max} HINT: Avoid adding listeners in loops.`;
+}
+
 const kFactory = Symbol('factory');
 const kStorage = Symbol('storage');
 const DEFAULT_FACTORY = () => null;
@@ -463,6 +561,7 @@ Pool.prototype.pop = function () {
 var structs$1 = {
   Semaphore: semaphore,
   LinkedList: linked,
+  EventEmitter: events,
   Pool: pool,
 };
 
@@ -495,10 +594,44 @@ var object$1 = {
   entries,
 };
 
+const METHOD = 'POST';
+const MIME = 'application/json';
+const callout = (url, { headers = {}, ...options }) => {
+  const custom = { 'Content-Type': MIME, ...headers };
+  const method = options.header ?? METHOD;
+  if (options.body) custom['Content-Length'] = Buffer.byteLength(options.body);
+  return fetch(url, { method, headers: custom, ...options }).then(res => {
+    if (res.status < 300) return res.json();
+    throw new Error(`HTTP status code ${res.status} for ${method} ${url}`);
+  });
+};
+
+const recieve = async stream => {
+  const chunks = [];
+  for await (const chunk of stream) chunks.push(chunk);
+  return Buffer.concat(chunks);
+};
+
+const ipToInt = ip => {
+  if (typeof ip !== 'string') return Number.NaN;
+  return ip.split('.').reduce((acc, v) => acc * 256 + +v, 0);
+};
+
+const INVALID_IP = 'Invalid IPv4 address';
+const ipFromInt = ip => {
+  if (!Number.isInteger(ip) || ip < 0 || ip > 0xffffffff) throw new Error(INVALID_IP);
+  for (var i = 0, arr = new Array(4); i < 4; i++) arr[i] = (ip >>> (8 * (3 - i))) & 0xff;
+  return arr.join('.');
+};
+
+const ip4rse = ip => (typeof ip === 'string' ? ipToInt(ip) : ipFromInt(ip));
+var net$1 = { callout, recieve, ip4rse };
+
 var time = exports.time = time$1;
 var utils = exports.utils = utils$1;
 var string = exports.string = string$1;
 var structs = exports.structs = structs$1;
 var object = exports.object = object$1;
+var net = exports.net = net$1;
 
-export { exports as default, object, string, structs, time, utils };
+export { exports as default, net, object, string, structs, time, utils };
