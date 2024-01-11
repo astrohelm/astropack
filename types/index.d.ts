@@ -5,12 +5,12 @@ import type { on, once, EventEmitter as NodeEmitter, defaultMaxListeners } from 
 
 export const structs = {
   Semaphore: class Semaphore {
-    static symbols: { kConcurrncy: symbol; kTimeout: symbol; kSize: symbol };
+    static symbols: { kConcurrency: symbol; kTimeout: symbol; kSize: symbol };
     empty: boolean;
     count: number;
     leave: () => Promise<void>;
     enter: () => Promise<void>;
-    constructor(concurency: number, size?: number, timeout?: number);
+    constructor(concurrency: number, size?: number, timeout?: number);
   },
 
   LinkedList: class LinkedList<T = unknown> {
@@ -129,7 +129,7 @@ export const time: {
    * astropack.time.diff(new Date(), tomorrow, 'h'); // 24
    * astropack.time.diff(tomorrow, new Date(), 'h'); // -24
    */
-  diff: (a: Date, b?: Date, measure?: 'yaer' | 'month' | 'd' | 'h' | 'm' | 's' | 'i') => number;
+  diff: (a: Date, b?: Date, measure?: 'year' | 'month' | 'd' | 'h' | 'm' | 's' | 'i') => number;
   /**
    * Duration shorthands
    * use shorthands, such as 2h 30m to get milliseconds
@@ -202,7 +202,7 @@ export const utils: {
    */
   equals: <T>(a: T, b: T) => boolean;
   /**
-   * Bytes prettiftcation
+   * Bytes prettification
    * Can contain up to YB
    * @example
    * const astropack = require('astropack');

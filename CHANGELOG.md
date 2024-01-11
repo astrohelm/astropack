@@ -2,6 +2,12 @@
 
 ## [Unreleased][unreleased]
 
+## [0.8.0][] - 2023-12-00
+
+- Fixed fetch bug with default Method
+- Grammar fixes
+- Packages update
+
 ## [0.7.0][] - 2023-12-13
 
 - Linked list static methods
@@ -84,7 +90,8 @@
 - Stable release version
 - Repository created
 
-[unreleased]: https://github.com/astrohelm/astropack/compare/v0.7.0...HEAD
+[unreleased]: https://github.com/astrohelm/astropack/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/astrohelm/astropack/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/astrohelm/astropack/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/astrohelm/astropack/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/astrohelm/astropack/compare/v0.4.0...v0.5.0
