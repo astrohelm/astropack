@@ -1,6 +1,6 @@
 <h1 align="center">Astropack - utilities kit</h1>
 
-Utilities without any domain logic witch often in use at [astroghelm](https://github.com/astrohelm)
+Utilities without any domain logic witch often in use at [astrohelm](https://github.com/astrohelm)
 repositories. This library can be used in **frontend** and **backend** with both **commonjs** and
 **esm** syntaxes.
 
